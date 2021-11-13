@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="snsMapper">
+
+	<resultMap id="SnsResultSet" type="Sns">
+		
+		<id property="snsNo" column="SNS_NO"/>
+		<result property="lCount" column="SNS_LCOUNT"/>
+		<result property="snsTitle" column="SNS_TITLE"/>
+		<result property="snsContent" column="SNS_CONTENT"/>
+		<result property="snsDate" column="SNS_DATE"/>
+		<result property="empNo" column="EMP_NO"/>
+		<result property="snsStatus" column="SNS_STATUS"/>
+		<collection property="snsFile" resultMap="AttechmentResultSet"/>
+		<collection property="emp" resultMap="MemberResultSet"/>
+	</resultMap>
+	
+	<resultMap id="AttechmentResultSet" type="Attechment">
+		
+		<id property="snsFileNo" column = "SNS_FILE_NO"/>
+		<result property="originFile" column="SNS_ORIGIN_NAME"/>
+		<result property="changeFile" column="SNS_CHANGE_NAME"/>
+		<result property="snsNo" column="SNS_NO"/>
+		
+	</resultMap>
+	
+	<resultMap id="MemberResultSet" type="Member">
+		
+		<id property="empNO" column="EMP_NO"/>
+		<result property="empName" column="EMP_NAME"/>
+		<result property="empId" column="EMP_ID"/>
+		<result property="empNum" column="EMP_NUM"/>
+		<result property="empPwd" column="EMP_PWD"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="salary" column="SALARY"/>
+		<result property="hireDate" column="HIRE_DATE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="empYN" column="EMP_YN"/>
+		<result property="jobCode" column="JOB_CODE"/>
+		<result property="deptCode" column="DEPT_CODE"/>
+		
+	</resultMap>
+	
+	
+	<select id="selectList" resultMap="SnsResultSet">
+		SELECT a.SNS_NO,a.SNS_LCOUNT, a.SNS_TITLE, a.SNS_CONTENT, a.SNS_DATE, a.EMP_NO ,a.SNS_STATUS, b.SNS_FILE_NO,b.SNS_ORIGIN_NAME, b.SNS_CHANGE_NAME, c.EMP_NAME
+		FROM SNS a
+		LEFT JOIN SNS_ATTECHMENT b ON a.SNS_NO = b.SNS_NO
+		LEFT JOIN EMPLOYEE c ON a.EMP_NO = c.EMP_NO
+		WHERE SNS_STATUS = 'Y'
+		ORDER BY a.SNS_NO DESC
+		
+	</select>
+	
+	<insert id="insert" parameterType="Sns">
+		INSERT INTO SNS
+		VALUES(SEQ_SNS_NO.NEXTVAL, default,#{snsTitle},#{snsContent},SYSDATE,#{empNo},default)
+	</insert>
+	
+	
+	<select id="selectSns" parameterType="_int" resultMap="SnsResultSet">
+		SELECT *
+		FROM SNS
+		WHERE SNS_NO=#{sno} AND SNS_STATUS='Y'
+	</select>
+	
+	
+	<update id="deleteSns" parameterType="_int">
+		UPDATE SNS
+		SET SNS_STATUS='N'
+		WHERE SNS_NO =#{sno} AND SNS_STATUS='Y'
+	</update>
+	
+	<update id="update" parameterType="Sns">
+		update Sns
+		set sns_title=#{snsTitle}, sns_content=#{snsContent}
+		    
+		where sns_no=#{snsNo}
+	</update>
+	
+	
+</mapper>
+

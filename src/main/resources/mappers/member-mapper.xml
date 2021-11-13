@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+
+
+	<resultMap id="memberResultSet" type="Member">
+		<id property="empNO" column="EMP_NO"/>
+		<result property="empName" column="EMP_NAME"/>
+		<result property="empId" column="EMP_ID"/>
+		<result property="empNum" column="EMP_NUM"/>
+		<result property="empPwd" column="EMP_PWD"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="salary" column="SALARY"/>
+		<result property="hireDate" column="HIRE_DATE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="empYN" column="EMP_YN"/>
+		<result property="jobCode" column="JOB_CODE"/>
+		<result property="deptCode" column="DEPT_CODE"/>
+	</resultMap>
+
+	<resultMap id = "jobResultSet" type="Job">
+		<id property="jobCode" column="job_code"/>
+		<result property="jobName" column="job_name"/>
+	</resultMap>
+	
+	<resultMap id = "deptResultSet" type="Dept">
+		<id property="deptCode" column="dept_code"/>
+		<result property="deptName" column="dept_name"/>
+	</resultMap>
+	
+	<resultMap id="memberViewResultSet" type="MemberView">
+		<id property="empNO" column="EMP_NO" />
+		<result property="empName" column="EMP_NAME" />
+		<result property="empId" column="EMP_ID" />
+		<result property="empNum" column="EMP_NUM" />
+		<result property="empPwd" column="EMP_PWD" />
+		<result property="email" column="EMAIL" />
+		<result property="phone" column="PHONE" />
+		<result property="salary" column="SALARY" />
+		<result property="hireDate" column="HIRE_DATE" />
+		<result property="address" column="ADDRESS" />
+		<result property="empYN" column="EMP_YN" />
+		<result property="jobCode" column="JOB_CODE" />
+		<result property="deptCode" column="DEPT_CODE" />
+		<result property="deptName" column="DEPT_NAME" />
+		<result property="jobName" column="JOB_NAME" />
+	</resultMap>
+	
+	<resultMap id="empAttachmentResultSet" type="EmpAttachment">
+		<id property="fileNo" column="FILE_NO" />
+		<result property="originName" column="ORIGIN_NAME" />
+		<result property="changeName" column="CHANGE_NAME" />
+		<result property="empNO" column="EMP_NO" />
+	</resultMap>
+	
+	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+		
+		select * from employee
+		where emp_id=#{empId} 
+		and emp_yn='N'
+	</select>
+	
+	<insert id="insertMember" parameterType="Member">
+		insert into employee
+		values(seq_emp_no.nextval,#{empName}, #{empId}, #{empNum}, #{empPwd}, #{email}, #{phone},
+		#{salary}, SYSDATE,#{address},default,#{jobCode},#{deptCode})
+	</insert>
+	
+	<!-- 이거죠 ? 
+	<update id="updateMember" parameterType="Member">
+		update employee
+		set email=#{email},  phone=#{phone}, address=#{address}, modify_date=SYSDATE
+		where   emp_id=#{empId}
+	</update>
+	-->
+	<update id="updateMember" parameterType="Member">
+      update employee
+      	set email=#{email},  phone=#{phone}, address=#{address}
+      where   emp_id=#{empId}
+   </update>
+	
+	<delete id="deleteMember" parameterType="string">
+		update employee
+		set emp_yn='Y'
+		where emp_id=#{empId}
+	</delete>
+	
+	<select id="selectJob" resultMap="jobResultSet">
+		select *
+		from job
+	</select>
+	
+	<select id="selectDept" resultMap="deptResultSet">
+		select *
+		from department
+	</select>
+	
+
+	<select id="contactSelectList" parameterType="hashmap"
+		resultMap="memberViewResultSet">
+		SELECT *
+		FROM (
+		SELECT ROWNUM NUM, A.*
+		FROM (SELECT *
+		FROM EMPLOYEE_VIEW
+		WHERE EMP_NAME LIKE #{query}
+		AND DEPT_CODE LIKE #{department}
+		AND EMP_YN='N'
+		ORDER BY DEPT_CODE) A
+		)
+		WHERE NUM BETWEEN 1 + (#{page} - 1 ) * 10 AND #{page} * 10
+
+	</select>
+
+	<select id="countMember" resultType="_int">
+		SELECT COUNT(*)
+		FROM EMPLOYEE
+		WHERE EMP_YN='N'
+	</select>
+	<select id="selectName" parameterType="string" resultType="_int">
+		select emp_id
+		from employee
+		where emp_name=#{empName}
+  	</select>
+	
+	 <insert id="insertProfile" parameterType="EmpAttachment">
+		INSERT INTO EMP_ATTACHMENT
+		VALUES(EMP_ATTACHMENT_SEQ.NEXTVAL,#{originName}, #{changeName}, #{empNO})
+	</insert>
+	
+	<update id="updateProfile" parameterType="EmpAttachment">
+		UPDATE EMP_ATTACHMENT
+		SET ORIGIN_NAME=#{originName}, CHANGE_NAME=#{changeName}
+		WHERE EMP_NO=#{empNO}
+	</update>
+		
+	<select id="selectList" resultMap="memberViewResultSet">
+		select *
+		from employee e
+		left outer join job j on (e.job_code=j.job_code)	
+		left outer join department d on (e.dept_code=d.dept_code)	
+		where emp_yn='N'	
+	</select>
+	
+	<select id="searchList" parameterType="hashmap" resultMap="memberViewResultSet">
+	
+		select *
+		from employee e
+		left outer join job j on (e.job_code=j.job_code)	
+		left outer join department d on (e.dept_code=d.dept_code)	
+		where emp_yn='N'
+		<if test="job != ''">
+    		AND j.job_code=#{job}
+    	</if>
+		<if test="dept != ''">
+    		AND d.dept_code=#{dept}
+    	</if>
+    	<if test="emp != ''">
+    		AND e.emp_name=#{emp}
+    	</if>	
+	</select>
+	
+	<select id="selectMember" parameterType="int" resultMap="memberViewResultSet">
+		select * 
+		from employee e
+		left outer join job j on (e.job_code=j.job_code)	
+		left outer join department d on (e.dept_code=d.dept_code)	
+		where emp_yn='N'
+		and emp_no=#{empNO}
+		
+	</select>
+	
+	<update id="updateMember2" parameterType="Member">
+		update employee
+		set dept_code=#{deptCode},  job_code=#{jobCode}, salary=#{salary}
+		where   emp_no=#{empNO}
+	</update>
+
+	<update id="deleteMember2" parameterType="string">
+		update employee
+		set emp_yn='Y'
+		where emp_id=#{empId}
+	</update>
+	<select id="adminLogin" parameterType="Member" resultMap="memberResultSet">
+		
+		select * from employee
+		where emp_id=#{empId} 
+		
+	</select>
+	
+	<!-- approval commute 관련 -->
+   <select id="selectMemberList" resultMap="memberViewResultSet">
+      SELECT *
+      FROM EMPLOYEE E
+      JOIN DEPARTMENT D ON E.DEPT_CODE = D.DEPT_CODE
+      JOIN JOB J ON E.JOB_CODE = J.JOB_CODE
+      WHERE EMP_YN = 'N'
+   </select>
+   
+   <select id="selectMEmp" parameterType="hashmap" resultMap="memberViewResultSet">
+      SELECT *
+      FROM EMPLOYEE E
+      JOIN JOB J ON E.JOB_CODE = J.JOB_CODE
+      JOIN DEPARTMENT D ON E.DEPT_CODE = D.DEPT_CODE
+      JOIN APPROVAL A ON E.EMP_NO = A.APPROVAL_M_NO
+      WHERE A.APPROVAL_NO = #{ano}
+      AND A.APPROVAL_M_NO = #{mno}
+   </select>
+   
+   <select id="selectFEmp" parameterType="hashmap" resultMap="memberViewResultSet">
+      SELECT *
+      FROM EMPLOYEE E
+      JOIN JOB J ON E.JOB_CODE = J.JOB_CODE
+      JOIN DEPARTMENT D ON E.DEPT_CODE = D.DEPT_CODE
+      JOIN APPROVAL A ON E.EMP_NO = A.APPROVAL_F_NO
+      WHERE A.APPROVAL_NO = #{ano}
+      AND A.APPROVAL_F_NO = #{fno}
+   </select>
+   
+   <select id="selectWEmp" parameterType="hashmap" resultMap="memberViewResultSet">
+      SELECT *
+      FROM EMPLOYEE E
+      JOIN JOB J ON E.JOB_CODE = J.JOB_CODE
+      JOIN DEPARTMENT D ON E.DEPT_CODE = D.DEPT_CODE
+      JOIN APPROVAL A ON E.EMP_NO = A.WRITER_NO
+      WHERE A.APPROVAL_NO = #{ano}
+      AND A.WRITER_NO = #{wno}
+   </select>
+   
+   <select id="selectProfile" parameterType="_int" resultMap="empAttachmentResultSet">
+      SELECT *
+      FROM EMP_ATTACHMENT
+      WHERE EMP_NO=#{empNO}
+     </select>
+     
+     
+</mapper>
+
