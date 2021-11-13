@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>임시 저장함</title>
+<title>GROUBEAR</title>
 <style>
 	#tempSentListTb{text-align: center;}
     #tempSentListTb>tbody>tr:hover{cursor:pointer;}
@@ -114,8 +114,6 @@
 		        </div>
 		        <br><br>
 		    </div>
-
-			<jsp:include page="../../common/footer.jsp"/>
 		
 		</div>
 	</div>

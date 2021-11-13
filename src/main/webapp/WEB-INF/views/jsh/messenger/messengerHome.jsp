@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/jsh/tab.css" />
 <link rel="stylesheet"
@@ -37,7 +38,7 @@
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GROUBEAR</title>
 </head>
 <body>
 	<script type="text/javascript">
@@ -176,274 +177,280 @@
 	<!-- ========================================================= -->
 <body id="page-top">
 
-	<!-- Page Wrapper -->
-	<div id="wrapper">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="main.p">
-				<div class="sidebar-brand-icon rotate-n-15"
-					style="width: 50px; height: 50px;">
-					<img
-						src="${pageContext.request.contextPath}/resources/images/common/groubear4.png"
-						style="width: 50px; height: 50px;">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main.p">
+                <div class="sidebar-brand-icon rotate-n-15" style="width:50px; height:50px;">
+                  	<img  src="${pageContext.request.contextPath}/resources/images/common/groubear4.png" style="width:50px; height:50px;">
+                                           
+                </div>
+                <div class="sidebar-brand-text mx-3">GROUBEAR</div>
+            </a>
 
-				</div>
-				<div class="sidebar-brand-text mx-3">GROUBEAR</div>
-			</a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="main.p">
+                   
+                    <span>Home</span></a>
+            </li>
 
-			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link" href="main.p">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-					<span>Home</span>
-			</a></li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                관리
+            </div>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider">
+            <!-- Nav Item - Collapse Menu one -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="true" aria-id="collapseOne" >
+                 	<span style="display:inline-block; width:20px; height:20px;">
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/approval.png" style="width:20px; height:20px;" >                 
+                	</span>
+                    <span>전자결재</span>
+                    
+                </a>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="formList.ep">문서 작성</a>
+                        <a class="collapse-item" href="tempSentList.ep">임시 저장함</a>
+						<a class="collapse-item" href="sentList.ep">상신 문서함</a>
+						<a class="collapse-item" href="receivedList.ep">결재 문서함</a>
+                    </div>
+                </div>
+            </li>
 
-			<!-- Heading -->
-			<div class="sidebar-heading">관리</div>
+            <!-- Nav Item - Collapse Menu tow -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                   <span style="display:inline-block; width:20px; height:20px;">
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/commute.png" style="width:20px; height:20px;" >                 
+                	</span>
+                    <span>근태관리</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="recordForm.cm">출/퇴근 기록</a>
+                        <a class="collapse-item" href="myRecord.cm">나의 근태현황</a>
+                        <a class="collapse-item" href="leaveMyRecord.lv">연차 내역</a>
+                       	<c:if test="${ loginUser.empId eq 'admin' }">
+                           <a class="collapse-item" href="allRecord.cm">전사 근태현황</a>
+                        </c:if>
+                    </div>
+                </div>
+            </li>
 
-			<!-- Nav Item - Collapse Menu one -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseOne"
-				aria-expanded="true" aria-id="collapseOne"> <span
-					style="display: inline-block; width: 20px; height: 20px;"> <img
-						src="${pageContext.request.contextPath}/resources/images/common/approval.png"
-						style="width: 20px; height: 20px;">
-				</span> <span>전자결재</span>
+	<li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                   <span style="display:inline-block; width:20px; height:20px;">
+                  		<img src="${pageContext.request.contextPath}/resources/images/common/manage.png" style="width:20px; height:20px;">                 
+                	</span>
+                    <span>인사관리</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="list.mem">직원 조회</a>
+                       
+                    </div>
+                </div>
+            </li>
 
-			</a>
-				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
+	<!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                   <span style="display:inline-block; width:20px; height:20px;">
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/reservation.png" style="width:20px; height:20px;">                 
+                	</span>
+                    <span>자원관리</span>
+                </a>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                    
+                        <a class="collapse-item" href="roomView.re">회의실 예약</a>
+                        <a class="collapse-item" href="carView.re">차량 예약</a>
+                    </div>
+                </div>
+            </li>
 
-						<a class="collapse-item" href="formList.ep">문서 작성</a> <a
-							class="collapse-item" href="tempSentList.ep">임시 저장함</a> <a
-							class="collapse-item" href="sentList.ep">상신 문서함</a> <a
-							class="collapse-item" href="receivedList.ep">결재 문서함</a>
-					</div>
-				</div></li>
+	<!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <span style="display:inline-block; width:20px; height:20px;">
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/calender.png" style="width:20px; height:20px;">                 
+                	</span>
+                    <span>캘린더</span>
+                </a>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                       
+                        <a class="collapse-item" href="calendarList.cal">개인 일정</a>
+                        
+                    </div>
+                </div>
+            </li>
 
-			<!-- Nav Item - Collapse Menu tow -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseUtilities"> <span
-					style="display: inline-block; width: 20px; height: 20px;"> <img
-						src="${pageContext.request.contextPath}/resources/images/common/commute.png"
-						style="width: 20px; height: 20px;">
-				</span> <span>근태관리</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="recordForm.cm">출/퇴근 기록</a> <a
-							class="collapse-item" href="myRecord.cm">나의 근태현황</a> <a
-							class="collapse-item" href="leaveMyRecord.lv">연차 내역</a> <a
-							class="collapse-item" href="allRecord.cm">전사 근태현황</a>
-					</div>
-				</div></li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseThree"
-				aria-expanded="true" aria-controls="collapseUtilities"> <span
-					style="display: inline-block; width: 20px; height: 20px;"> <img
-						src="${pageContext.request.contextPath}/resources/images/common/manage.png"
-						style="width: 20px; height: 20px;">
-				</span> <span>인사관리</span>
-			</a>
-				<div id="collapseThree" class="collapse"
-					aria-labelledby="headingThree" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                커뮤니티
+            </div>
 
-						<a class="collapse-item" href="list.mem">직원 조회</a>
-
-					</div>
-				</div></li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseFour"
-				aria-expanded="true" aria-controls="collapseUtilities"> <span
-					style="display: inline-block; width: 20px; height: 20px;"> <img
-						src="${pageContext.request.contextPath}/resources/images/common/reservation.png"
-						style="width: 20px; height: 20px;">
-				</span> <span>자원관리</span>
-			</a>
-				<div id="collapseFour" class="collapse"
-					aria-labelledby="headingFour" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-
-						<a class="collapse-item" href="roomView.re">회의실 예약</a> <a
-							class="collapse-item" href="carView.re">차량 예약</a>
-					</div>
-				</div></li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseFive"
-				aria-expanded="true" aria-controls="collapseUtilities"> <span
-					style="display: inline-block; width: 20px; height: 20px;"> <img
-						src="${pageContext.request.contextPath}/resources/images/common/calender.png"
-						style="width: 20px; height: 20px;">
-				</span> <span>캘린더</span>
-			</a>
-				<div id="collapseFive" class="collapse"
-					aria-labelledby="headingFive" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-
-						<a class="collapse-item" href="calendarList.cal">개인 일정</a>
-
-					</div>
-				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">커뮤니티</div>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseSix"
-				aria-expanded="true" aria-controls="collapseUtilities"> <span
-					style="display: inline-block; width: 20px; height: 20px;"> <img
-						src="${pageContext.request.contextPath}/resources/images/common/contact.png"
-						style="width: 20px; height: 20px;">
-				</span> <span>주소록</span>
-			</a>
-				<div id="collapseSix" class="collapse" aria-labelledby="headingSix"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="publicList.ct">사원 조회</a> <a
-							class="collapse-item" href="contactList.ct">개인 주소록</a>
-
-					</div>
-				</div></li>
-
-
-			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link"
-				href="messengerHome.msg"> <span
-					style="display: inline-block; width: 20px; height: 20px;"> <img
-						src="${pageContext.request.contextPath}/resources/images/common/messenger.png"
-						style="width: 20px; height: 20px;">
-				</span> <span>메신저</span></a></li>
-
-			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link" href="list.sns"> <span
-					style="display: inline-block; width: 20px; height: 20px;"> <img
-						src="${pageContext.request.contextPath}/resources/images/common/sns.png"
-						style="width: 20px; height: 20px;">
-				</span> <span>SNS</span></a></li>
+           	<!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <span style="display:inline-block; width:20px; height:20px;">
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/contact.png" style="width:20px; height:20px;">                 
+                	</span>
+                    <span>주소록</span>
+                </a>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="publicList.ct">사원 조회</a>
+                        <a class="collapse-item" href="contactList.ct">개인 주소록</a>
+                    
+                    </div>
+                </div>
+            </li>
 
 
+ 	<!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="messengerHome.msg">
+                    <span style="display:inline-block; width:20px; height:20px;">
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/messenger.png" style="width:20px; height:20px;">                 
+                	</span>
+                    <span>메신저</span></a>
+            </li>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="list.sns">
+                    <span style="display:inline-block; width:20px; height:20px;">
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/sns.png" style="width:20px; height:20px;">                 
+                	</span>
+                    <span>SNS</span></a>
+            </li>
 
-			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
-			</div>
+        
 
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
 
-		</ul>
-		<!-- End of Sidebar -->
+            
 
-		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
+        </ul>
+        <!-- End of Sidebar -->
 
-			<!-- Main Content -->
-			<div id="content">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Main Content -->
+            <div id="content">
 
-					<!-- Sidebar Toggle (Topbar) -->
-					<button id="sidebarToggleTop"
-						class="btn btn-link d-md-none rounded-circle mr-3">
-						<i class="fa fa-bars"></i>
-					</button>
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
+                   
 
-					<!-- Topbar Navbar -->
-					<ul class="navbar-nav ml-auto">
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
 
-						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
 
+                      
 
+                        <div class="topbar-divider d-none d-sm-block"></div>
 
-						<div class="topbar-divider d-none d-sm-block"></div>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> ${sessionScope.loginUser.empName}</span>
+                                <c:if test="${!empty sessionScope.profile.originName }">
+                                <img class="img-profile rounded-circle"
+                                	src="${ pageContext.servletContext.contextPath }/resources/profile_files/${sessionScope.profile.changeName}"/>
+                                </c:if>
+                                <c:if test="${empty sessionScope.profile.originName}">
+                                <img class="img-profile rounded-circle"
+                                    src="${pageContext.request.contextPath}/resources/images/common/member.png">
+                                </c:if>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="myPage.me">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                  	  마이페이지
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                             	       로그아웃
+                                </a>
+                            </div>
+                        </li>
 
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">
-									${sessionScope.loginUser.empName}</span> <c:if
-									test="${!empty sessionScope.profile.originName }">
-									<img class="img-profile rounded-circle"
-										src="${ pageContext.servletContext.contextPath }/resources/profile_files/${sessionScope.profile.changeName}" />
-								</c:if> <c:if test="${empty sessionScope.profile.originName}">
-									<img class="img-profile rounded-circle"
-										src="${pageContext.request.contextPath}/resources/images/common/member.png">
-								</c:if>
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="myPage.me"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이페이지
-								</a>
+                    </ul>
 
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									로그아웃
-								</a>
-							</div></li>
-
-					</ul>
-
-				</nav>
+                </nav>
 				<!-- End of Topbar -->
 
 

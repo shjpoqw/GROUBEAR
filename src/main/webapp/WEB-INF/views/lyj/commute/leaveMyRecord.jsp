@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>연차 내역</title>
+<title>GROUBEAR</title>
 <style>
 	.modal-backdrop {
 	  display: none;
@@ -118,6 +118,8 @@
 					          <div class="form-group">
 					            <label for="recipient-name" class="col-form-label">연차 사용일 : </label>
 					            <input type="date" name="leaveUseDate" id="leaveUseDate">
+					            <br>
+					            <div id="infoDiv"></div>
 					          </div>
 					        </form>
 					      </div>
@@ -132,8 +134,6 @@
 				</div>
 		        <br><br>
 		    </div>
-
-			<jsp:include page="../../common/footer.jsp"/>
 		
 		</div>
 	</div>
@@ -221,6 +221,11 @@
 						
 					});
 					$("#createArea tbody").html(value);
+					
+					if (list.length == 0) {
+						$("#sendBtn").prop("disabled", true);
+						$("#infoDiv").html("<h5 class='m-0 font-weight-bold text-primary'>사용 가능한 연차가 없습니다.</h5>");
+					}
 					
 				},error:function(){
 					console.log("생성내역 조회 ajax 통신 실패");

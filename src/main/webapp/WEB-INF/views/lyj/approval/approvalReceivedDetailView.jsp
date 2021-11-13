@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>결재 문서함</title>
+<title>GROUBEAR</title>
 <style>
    .box{
       display: inline-block;
@@ -127,8 +127,6 @@
               </div>
               <br><br>
           </div>
-
-         <jsp:include page="../../common/footer.jsp"/>
       
       </div>
    </div>

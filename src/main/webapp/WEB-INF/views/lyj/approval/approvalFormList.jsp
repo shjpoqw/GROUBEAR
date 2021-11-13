@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>문서 작성</title>
+<title>GROUBEAR</title>
 <style>
 	#formListTb{text-align: center;}
     #formListTb>tbody>tr:hover{cursor:pointer;}
@@ -103,8 +103,6 @@
 		        </div>
 		        <br><br>
 		    </div>
-
-			<jsp:include page="../../common/footer.jsp"/>
 		
 		</div>
 	</div>

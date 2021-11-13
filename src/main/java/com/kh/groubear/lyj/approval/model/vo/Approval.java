@@ -1,7 +1,5 @@
 package com.kh.groubear.lyj.approval.model.vo;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
