@@ -14,7 +14,7 @@
     <meta name="description" content="">	
     <meta name="author" content="">
 
-   <title>Insert title here</title>
+   <title>GROUBEAR</title>
 	
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath}/resources/css/common/all.min.css" rel="stylesheet" type="text/css">
@@ -26,6 +26,8 @@
     <!-- Custom styles for this template-->
     <link href="<%=request.getContextPath()%>/resources/css/common/sb-admin-2.min.css" rel="stylesheet"> 
 	<script src="https://kit.fontawesome.com/568d1fce8b.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 </head>
 <style>
 	#btn{
@@ -122,7 +124,9 @@
                         <a class="collapse-item" href="recordForm.cm">출/퇴근 기록</a>
                         <a class="collapse-item" href="myRecord.cm">나의 근태현황</a>
                         <a class="collapse-item" href="leaveMyRecord.lv">연차 내역</a>
-                        <a class="collapse-item" href="allRecord.cm">전사 근태현황</a>
+                       	<c:if test="${ loginUser.empId eq 'admin' }">
+                           <a class="collapse-item" href="allRecord.cm">전사 근태현황</a>
+                        </c:if>
                     </div>
                 </div>
             </li>
@@ -367,10 +371,10 @@
                     <input type="text" class="form-control" id="empName" name="empName" value="${ loginUser.empName }" readonly><br>
                      
                     <label for="deptCode"> 부서 :</label>
-                    <input type="text" class="form-control" id="deptCode" name="deptCode" value="${ loginUser.deptCode }" readonly><br>
+                    <input type="text" class="form-control" id="deptCode" name="deptCode" value="${ loginUser.deptName }" readonly><br>
                     
                     <label for="jobCode"> 직책 :</label>
-                    <input type="text" class="form-control" id="jobCode" name="jobCode" value="${ loginUser.jobCode }" readonly><br>
+                    <input type="text" class="form-control" id="jobCode" name="jobCode" value="${ loginUser.jobName }" readonly><br>
                     
                     <label for="hireDate"> 입사일 :</label>
                     <input type="text" class="form-control" id="hireDate" name="hireDate" value="${ loginUser.hireDate }" readonly><br>
@@ -492,7 +496,6 @@
     </div>
     
        <!-- Bootstrap core JavaScript-->
-    <script src="<%=request.getContextPath()%>/resources/js/common/jquery.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/common/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

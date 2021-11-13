@@ -67,7 +67,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member updateMember(Member m) throws Exception {
+	public MemberView updateMember(MemberView m) throws Exception {
 		
 		int result = memberDao.updateMember(sqlSession, m);
 
@@ -76,7 +76,8 @@ public class MemberServiceImpl implements MemberService {
 			throw new Exception("회원수정에 실패하였습니다.");
 
 		} else {
-			Member loginUser = memberDao.loginMember(sqlSession, m);
+			MemberView loginUser = memberDao.selectUpdateMember(sqlSession, m);
+			System.out.println("유저정보 " + loginUser);
 			return loginUser;
 		}
 	}
@@ -218,5 +219,19 @@ public class MemberServiceImpl implements MemberService {
 	   public MemberView selectWEmp(int ano, int wno) {
 	      return memberDao.selectWEmp(sqlSession, ano, wno);
 	   }
+
+	@Override
+	public String getDeptName(Member user) {
+		
+		return memberDao.selectDeptName(sqlSession,user);
+	}
+
+	@Override
+	public String getJobName(Member user) {
+		
+		return memberDao.selectJobName(sqlSession,user);
+	}
+
+	
 
 }

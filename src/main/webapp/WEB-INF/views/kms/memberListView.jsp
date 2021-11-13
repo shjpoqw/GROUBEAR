@@ -12,7 +12,7 @@
     <meta name="description" content="">	
     <meta name="author" content="">
 
-    <title>인사 관리</title>
+    <title>GROUBEAR</title>
 	
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath}/resources/css/common/all.min.css" rel="stylesheet" type="text/css">

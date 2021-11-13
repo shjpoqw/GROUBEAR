@@ -115,7 +115,7 @@ public class ReserveConttoller {
 										@RequestParam("description") String description,
 										@RequestParam("type") String type,
 										HttpSession session) {
-
+			System.out.println("실행 되니");
 			Member m = (Member)session.getAttribute("loginUser");
 			ReserveRoom rr = new ReserveRoom() ;
 			rr.set_id(_id);
