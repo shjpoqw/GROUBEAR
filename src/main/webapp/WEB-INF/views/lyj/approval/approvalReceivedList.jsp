@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>결재 문서함</title>
+<title>GROUBEAR</title>
 <style>
 	#receivedListTb{text-align: center;}
     #receivedListTb>tbody>tr:hover{cursor:pointer;}
@@ -129,8 +129,6 @@
 		        </div>
 		        <br><br>
 		    </div>
-
-			<jsp:include page="../../common/footer.jsp"/>
 		
 		</div>
 	</div>

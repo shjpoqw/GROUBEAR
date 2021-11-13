@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>문서 작성</title>
+<title>GROUBEAR</title>
 <style>
 	#formListTb{text-align: center;}
     #formListTb>tbody>tr:hover{cursor:pointer;}
@@ -70,23 +70,23 @@
 			                  <tr>
 			                    <th>구분</th>
 			                    <th>중간 결재자</th>
-			                    <th>최종 결재자 *</th>
+			                    <th>최종 결재자</th>
 			                  </tr>
 			                </thead>
 			                <tbody>
 			                	<tr>
 			                		<th>이름</th>
-			                		<td><input type="text" id="mName" class="form-control" name="approvalMName" value="${ mEmp.empName }" readonly></td>
+			                		<td><input type="text" id="mName" class="form-control" name="approvalMName" value="${ mEmp.empName }" readonly required></td>
 			                		<td><input type="text" id="fName" class="form-control" name="approvalFName" value="${ fEmp.empName }" readonly required></td>
 			                	</tr>
 			                	<tr>
 			                		<th>부서</th>
-			                		<td><input type="text" id="mDept" class="form-control" name="approvalMDept" value="${ mEmp.deptName }" readonly></td>
+			                		<td><input type="text" id="mDept" class="form-control" name="approvalMDept" value="${ mEmp.deptName }" readonly required></td>
 			                		<td><input type="text" id="fDept" class="form-control" name="approvalFDept" value="${ fEmp.deptName }" readonly required></td>
 			                	</tr>
 			                	<tr>
 			                		<th>직급</th>
-			                		<td><input type="text" id="mJob" class="form-control" name="approvalMJob" value="${ mEmp.jobName }" readonly></td>
+			                		<td><input type="text" id="mJob" class="form-control" name="approvalMJob" value="${ mEmp.jobName }" readonly required></td>
 			                		<td><input type="text" id="fJob" class="form-control" name="approvalFJob" value="${ mEmp.jobName }" readonly required></td>
 			                	</tr>
 			                </tbody>
@@ -160,8 +160,6 @@
 		        </div>
 		        <br><br>
 		    </div>
-
-			<jsp:include page="../../common/footer.jsp"/>
 		
 		</div>
 	</div>
@@ -173,11 +171,13 @@
 		});
 		
 		function changeTempSave() {
-			$("#tempSave").val("Y");
-			
-			//$("#insertForm").attr("action", "insert.ep");
-			
-			$("#updateForm").submit();
+			if (check() != null) {
+				$("#tempSave").val("Y");
+				
+				//$("#insertForm").attr("action", "insert.ep");
+				
+				$("#updateForm").submit();
+			}
 		}
 		
 		function leadingZeros(n, digits) {
@@ -210,18 +210,36 @@
 		}
 		
 		function check(){
-			const fName = document.getElementById("fName");
 			const fNo = document.getElementById("fNo");
 			const mNo = document.getElementById("mNo");
+			const fName = document.getElementById("fName");
+			const mName = document.getElementById("mName");			
 	        const dueDate = document.getElementById("dueDate");
-	        
-	        if(fNo.value == "" || fNo.value.length == 0){
+            	
+            if(title.value == "" || title.value.length == 0){
+            	alert("제목은 필수 항목입니다.");
+            	title.focus();
+                return false;
+            } else if(mNo.value == "" || mNo.value.length == 0){
+                alert("중간 결재자는 필수 항목입니다.");
+                mName.focus();
+                return false;
+	        } else if(fNo.value == "" || fNo.value.length == 0){
                 alert("최종 결재자는 필수 항목입니다.");
                 fName.focus();
                 return false;
-	        } else if(mNo.value == "" || mNo.value.length == 0){
-	        	var val = null;
-	        	mNo.setAttribute('value', val);
+	        } else if(dueDate.value == "" || dueDate.value.length == 0){
+            	alert("마감일은 필수 항목입니다.");
+            	dueDate.focus();
+                return false;
+            } else if(preservedYears.value == "" || preservedYears.value.length == 0){
+            	alert("보존년한 필수 항목입니다.");
+            	preservedYears.focus();
+                return false;
+            } else if(content.value == "" || content.value.length == 0){
+            	alert("내용은 필수 항목입니다.");
+            	content.focus();
+                return false;
             } else if(isUseDayEnd() == false){
             	alert("마감일이 현재 날짜보다 빠를 수 없습니다.");
             	dueDate.focus();

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>출/퇴근 기록</title>
+<title>GROUBEAR</title>
 </head>
 </head>
 <body id="page-top" onload="printClock()">
@@ -96,8 +96,6 @@
 				<br>
 					
 		    </div>
-
-			<jsp:include page="../../common/footer.jsp"/>
 		
 		</div>
 	</div>
