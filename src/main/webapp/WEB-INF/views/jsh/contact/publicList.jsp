@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">   
     <meta name="author" content="">
-<title>Insert title here</title>
+<title>GROUBEAR</title>
     <link href="${pageContext.request.contextPath}/resources/css/common/all.min.css" rel="stylesheet" type="text/css">
    
     <link
@@ -38,7 +38,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main.p">
                 <div class="sidebar-brand-icon rotate-n-15" style="width:50px; height:50px;">
-                     <img  src="${pageContext.request.contextPath}/resources/images/common/groubear4.png" style="width:50px; height:50px;">
+                  	<img  src="${pageContext.request.contextPath}/resources/images/common/groubear4.png" style="width:50px; height:50px;">
                                            
                 </div>
                 <div class="sidebar-brand-text mx-3">GROUBEAR</div>
@@ -66,9 +66,9 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-id="collapseOne" >
-                    <span style="display:inline-block; width:20px; height:20px;">
-                        <img  src="${pageContext.request.contextPath}/resources/images/common/approval.png" style="width:20px; height:20px;" >                 
-                   </span>
+                 	<span style="display:inline-block; width:20px; height:20px;">
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/approval.png" style="width:20px; height:20px;" >                 
+                	</span>
                     <span>전자결재</span>
                     
                 </a>
@@ -77,19 +77,20 @@
                         
                         <a class="collapse-item" href="formList.ep">문서 작성</a>
                         <a class="collapse-item" href="tempSentList.ep">임시 저장함</a>
-                  <a class="collapse-item" href="sentList.ep">상신 문서함</a>
-                  <a class="collapse-item" href="receivedList.ep">결재 문서함</a>
+						<a class="collapse-item" href="sentList.ep">상신 문서함</a>
+						<a class="collapse-item" href="receivedList.ep">결재 문서함</a>
                     </div>
                 </div>
             </li>
+
 
             <!-- Nav Item - Collapse Menu tow -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseUtilities">
                    <span style="display:inline-block; width:20px; height:20px;">
-                        <img  src="${pageContext.request.contextPath}/resources/images/common/commute.png" style="width:20px; height:20px;" >                 
-                   </span>
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/commute.png" style="width:20px; height:20px;" >                 
+                	</span>
                     <span>근태관리</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -98,17 +99,19 @@
                         <a class="collapse-item" href="recordForm.cm">출/퇴근 기록</a>
                         <a class="collapse-item" href="myRecord.cm">나의 근태현황</a>
                         <a class="collapse-item" href="leaveMyRecord.lv">연차 내역</a>
-                        <a class="collapse-item" href="allRecord.cm">전사 근태현황</a>
+                       	<c:if test="${ loginUser.empId eq 'admin' }">
+                           <a class="collapse-item" href="allRecord.cm">전사 근태현황</a>
+                        </c:if>
                     </div>
                 </div>
             </li>
 
-   <li class="nav-item">
+	<li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="true" aria-controls="collapseUtilities">
                    <span style="display:inline-block; width:20px; height:20px;">
-                        <img src="${pageContext.request.contextPath}/resources/images/common/manage.png" style="width:20px; height:20px;">                 
-                   </span>
+                  		<img src="${pageContext.request.contextPath}/resources/images/common/manage.png" style="width:20px; height:20px;">                 
+                	</span>
                     <span>인사관리</span>
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
@@ -121,13 +124,13 @@
                 </div>
             </li>
 
-   <!-- Nav Item - Utilities Collapse Menu -->
+	<!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseUtilities">
                    <span style="display:inline-block; width:20px; height:20px;">
-                        <img  src="${pageContext.request.contextPath}/resources/images/common/reservation.png" style="width:20px; height:20px;">                 
-                   </span>
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/reservation.png" style="width:20px; height:20px;">                 
+                	</span>
                     <span>자원관리</span>
                 </a>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
@@ -140,13 +143,13 @@
                 </div>
             </li>
 
-   <!-- Nav Item - Utilities Collapse Menu -->
+	<!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <span style="display:inline-block; width:20px; height:20px;">
-                        <img  src="${pageContext.request.contextPath}/resources/images/common/calender.png" style="width:20px; height:20px;">                 
-                   </span>
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/calender.png" style="width:20px; height:20px;">                 
+                	</span>
                     <span>캘린더</span>
                 </a>
                 <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
@@ -167,13 +170,13 @@
                 커뮤니티
             </div>
 
-              <!-- Nav Item - Utilities Collapse Menu -->
+           	<!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <span style="display:inline-block; width:20px; height:20px;">
-                        <img  src="${pageContext.request.contextPath}/resources/images/common/contact.png" style="width:20px; height:20px;">                 
-                   </span>
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/contact.png" style="width:20px; height:20px;">                 
+                	</span>
                     <span>주소록</span>
                 </a>
                 <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
@@ -188,12 +191,12 @@
             </li>
 
 
-    <!-- Nav Item - Charts -->
+ 	<!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="messengerHome.msg">
                     <span style="display:inline-block; width:20px; height:20px;">
-                        <img  src="${pageContext.request.contextPath}/resources/images/common/messenger.png" style="width:20px; height:20px;">                 
-                   </span>
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/messenger.png" style="width:20px; height:20px;">                 
+                	</span>
                     <span>메신저</span></a>
             </li>
 
@@ -201,8 +204,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="list.sns">
                     <span style="display:inline-block; width:20px; height:20px;">
-                        <img  src="${pageContext.request.contextPath}/resources/images/common/sns.png" style="width:20px; height:20px;">                 
-                   </span>
+                  		<img  src="${pageContext.request.contextPath}/resources/images/common/sns.png" style="width:20px; height:20px;">                 
+                	</span>
                     <span>SNS</span></a>
             </li>
 
@@ -275,7 +278,7 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> ${sessionScope.loginUser.empName}</span>
                                 <c:if test="${!empty sessionScope.profile.originName }">
                                 <img class="img-profile rounded-circle"
-                                   src="${ pageContext.servletContext.contextPath }/resources/profile_files/${sessionScope.profile.changeName}"/>
+                                	src="${ pageContext.servletContext.contextPath }/resources/profile_files/${sessionScope.profile.changeName}"/>
                                 </c:if>
                                 <c:if test="${empty sessionScope.profile.originName}">
                                 <img class="img-profile rounded-circle"
@@ -287,13 +290,13 @@
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="myPage.me">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                       마이페이지
+                                  	  마이페이지
                                 </a>
                                 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                       로그아웃
+                             	       로그아웃
                                 </a>
                             </div>
                         </li>
