@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>전사 근태현황</title>
+<title>GROUBEAR</title>
 </head>
 <body id="page-top">
 	
@@ -44,8 +44,6 @@
 				</div>
 		        <br><br>
 		    </div>
-
-			<jsp:include page="../../common/footer.jsp"/>
 		
 		</div>
 	</div>
