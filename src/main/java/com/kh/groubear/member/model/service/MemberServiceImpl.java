@@ -67,7 +67,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberView updateMember(MemberView m) throws Exception {
+	public Member updateMember(Member m) throws Exception {
 		
 		int result = memberDao.updateMember(sqlSession, m);
 
@@ -76,8 +76,7 @@ public class MemberServiceImpl implements MemberService {
 			throw new Exception("회원수정에 실패하였습니다.");
 
 		} else {
-			MemberView loginUser = memberDao.selectUpdateMember(sqlSession, m);
-			System.out.println("유저정보 " + loginUser);
+			Member loginUser = memberDao.loginMember(sqlSession, m);
 			return loginUser;
 		}
 	}
@@ -221,17 +220,9 @@ public class MemberServiceImpl implements MemberService {
 	   }
 
 	@Override
-	public String getDeptName(Member user) {
-		
-		return memberDao.selectDeptName(sqlSession,user);
+	public int countMemberCt(HashMap<String, Object> map) {
+		int result = memberDao.countMemberCt(sqlSession,map);
+		return result;
 	}
-
-	@Override
-	public String getJobName(Member user) {
-		
-		return memberDao.selectJobName(sqlSession,user);
-	}
-
-	
 
 }

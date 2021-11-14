@@ -1,4 +1,4 @@
-  package com.kh.groubear.jsh.contact.controller;
+package com.kh.groubear.jsh.contact.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +41,7 @@ public class ContactController {
 		map.put("department", department);
 
 		ArrayList<MemberView> list = memberService.contactSelectList(map);
-		int count = memberService.countMember();
+		int count = memberService.countMemberCt(map);
 		
 		
 		model.addAttribute("list", list);
@@ -63,7 +63,7 @@ public class ContactController {
 		map.put("query", query);
 		ArrayList<Contact> list = contactService.selectList(map);
 		
-		int count = contactService.countContact();
+		int count = contactService.countContact(map);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);

@@ -76,7 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where   emp_id=#{empId}
 	</update>
 	-->
-	<update id="updateMember" parameterType="MemberView">
+	<update id="updateMember" parameterType="Member">
       update employee
       	set email=#{email},  phone=#{phone}, address=#{address}
       where   emp_id=#{empId}
@@ -235,24 +235,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       FROM EMP_ATTACHMENT
       WHERE EMP_NO=#{empNO}
      </select>
-    <select id="selectUpdateMember" parameterType="MemberView" resultMap="memberViewResultSet">
-		
-		select * from employee E
-		JOIN JOB J ON E.JOB_CODE = J.JOB_CODE
-      	JOIN DEPARTMENT D ON E.DEPT_CODE = D.DEPT_CODE
-		where emp_id=#{empId} 
-		and emp_yn='N'
+     
+     <select id="countMemberCt" parameterType="hashmap" resultType="_int">
+		SELECT COUNT(*)
+		FROM EMPLOYEE
+		WHERE EMP_YN='N'
+		AND EMP_NAME LIKE #{query}
+		AND DEPT_CODE LIKE #{department}
 	</select>
 	
-	<select id="selectDeptName" parameterType="Member" resultType="string">
-		select dept_name
-		from department
-		where dept_code=#{deptCode}
-	</select>
-     <select id="selectJobName" parameterType="Member" resultType="string">
-		select job_name
-		from job
-		where job_code=#{jobCode}
-	</select>
+	
 </mapper>
-
