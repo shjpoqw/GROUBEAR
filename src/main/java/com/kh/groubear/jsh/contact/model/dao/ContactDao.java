@@ -32,8 +32,8 @@ public class ContactDao {
 		return sqlSession.update("contactMapper.deleteContact", deleteNo);
 	}
 
-	public int countContact(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("contactMapper.countContact");
+	public int countContact(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.selectOne("contactMapper.countContact",map);
 	}
 	
 

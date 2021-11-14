@@ -156,5 +156,10 @@ public class MemberDao {
 	      
 	      return sqlSession.selectOne("memberMapper.selectWEmp", map);
 	   }
+
+	public int countMemberCt(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberMapper.countMemberCt",map);
+	}
 	
 }

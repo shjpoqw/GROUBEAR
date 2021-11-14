@@ -51,10 +51,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE CONTACT_NO=#{deleteNo}
 	</update>
 	
-	<select id="countContact" resultType="_int">
+	<select id="countContact" resultType="_int" parameterType="hashmap" >
 		SELECT COUNT(*)
 		FROM CONTACT
 		WHERE STATUS = 'Y'
+		AND NAME LIKE #{query}
 	</select>
 </mapper>
 

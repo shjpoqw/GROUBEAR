@@ -324,7 +324,7 @@
 				<div class="container bootstrap snippets bootdey">
 
 					<div class="right" style="display: inline-block;">
-						<form method="post">
+						<form>
 							<input type="text" class="form-control" name="q"
 								value="${param.q}"
 								style="width: 250px; display: inline-block; margin-bottom: 15px; 

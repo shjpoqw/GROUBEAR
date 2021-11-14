@@ -58,6 +58,8 @@ public interface MemberService {
 
    MemberView selectWEmp(int ano, int wno);
 
+int countMemberCt(HashMap<String, Object> map);
+
 	
 
 

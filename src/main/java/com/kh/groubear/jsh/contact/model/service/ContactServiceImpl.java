@@ -57,8 +57,8 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
-	public int countContact() {
-		int result = contactDao.countContact(sqlSession);
+	public int countContact(HashMap<String, Object> map) {
+		int result = contactDao.countContact(sqlSession, map);
 		return result;
 	}
 }

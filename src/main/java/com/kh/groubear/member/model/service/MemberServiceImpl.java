@@ -219,4 +219,10 @@ public class MemberServiceImpl implements MemberService {
 	      return memberDao.selectWEmp(sqlSession, ano, wno);
 	   }
 
+	@Override
+	public int countMemberCt(HashMap<String, Object> map) {
+		int result = memberDao.countMemberCt(sqlSession,map);
+		return result;
+	}
+
 }

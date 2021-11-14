@@ -311,7 +311,7 @@
 	<div class="container bootstrap snippets bootdey">
 
 		<div class="right">
-			<form method="post">
+			<form>
 				<select class="form-control selectpicker noborder " name="d"
 					style="width: 100px; display: inline-block;">
 					<option value="">전체</option>

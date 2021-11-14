@@ -236,6 +236,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       WHERE EMP_NO=#{empNO}
      </select>
      
-     
+     <select id="countMemberCt" parameterType="hashmap" resultType="_int">
+		SELECT COUNT(*)
+		FROM EMPLOYEE
+		WHERE EMP_YN='N'
+		AND EMP_NAME LIKE #{query}
+		AND DEPT_CODE LIKE #{department}
+	</select>
+	
+	
 </mapper>
 

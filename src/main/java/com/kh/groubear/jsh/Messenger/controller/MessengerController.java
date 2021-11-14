@@ -41,8 +41,7 @@ public class MessengerController implements HandlerInterceptor {
 	public String messengerHome(HttpSession session,
 			@RequestParam(value = "q1", required = false, defaultValue = "") String q,
 			@RequestParam(value = "toEmpNo", required = false, defaultValue = "") String toEmpNo,
-			@RequestParam(value = "chatNo", required = false, defaultValue = "") String chatNo,
-			Model model,
+			@RequestParam(value = "chatNo", required = false, defaultValue = "") String chatNo, Model model,
 			HttpServletResponse response, HttpServletRequest request) throws NumberFormatException, IOException {
 		// ======= 회원 목록
 		Member user = (Member) session.getAttribute("loginUser");
@@ -56,8 +55,7 @@ public class MessengerController implements HandlerInterceptor {
 		ArrayList<MemberMsg> emp = messengerService.memberList(map);
 		model.addAttribute("emp", emp);
 		model.addAttribute("me", me);
-		
-	
+
 		MemberMsg toEmp = null;
 		if (!toEmpNo.equals("") && toEmpNo != null) {
 			toEmp = messengerService.selectEmp(Integer.parseInt(toEmpNo));
@@ -67,11 +65,9 @@ public class MessengerController implements HandlerInterceptor {
 		if (!chatNo.equals("") && chatNo != null) {
 			chatList = getChatListById(me.getEmpNO(), Integer.parseInt(toEmpNo), Integer.parseInt(chatNo));
 		}
-		
-		
+
 		ArrayList<ChatRead> chatRead = messengerService.getUnreadChat(me.getEmpNO());
-		model.addAttribute("chatRead" , chatRead);
-		
+		model.addAttribute("chatRead", chatRead);
 
 		model.addAttribute("chatList", chatList);
 		model.addAttribute("toEmp", toEmp);
@@ -131,7 +127,6 @@ public class MessengerController implements HandlerInterceptor {
 			map.put("message", message);
 
 			int result = messengerService.submit(map);
-			
 
 		}
 
@@ -146,53 +141,57 @@ public class MessengerController implements HandlerInterceptor {
 		map.put("toEmpNo", toEmpNo);
 		map.put("number", number);
 		ArrayList<ChatView> chatList = null;
-		if(number != 1) {
-			
+		if (number != 1) {
+
 			chatList = messengerService.getChatListByRecent(map);
-		}else {
+		} else {
 			chatList = messengerService.getChatListAllByRecent(map);
-			
+
 		}
-		if(chatList.size() > 0) {
+
+		if (chatList.size() == 0 || chatList.get(chatList.size() - 1).getChatNo() == number)
+			return "";
+		
+		if (chatList.size() > 0) {
 			int value = 0;
 			for (int i = chatList.size(); i > 0; i--) {
-				int chatTime = Integer.parseInt(chatList.get(value).getCreateDate().substring(11,13));
+				int chatTime = Integer.parseInt(chatList.get(value).getCreateDate().substring(11, 13));
 				String timeType = "오전";
-				if(chatTime >= 12) {
+				if (chatTime >= 12) {
 					timeType = "오후";
 					chatTime -= 12;
 				}
-				chatList.get(value).setCreateDate(timeType + " " + chatTime + ":" + chatList.get(value).getCreateDate().substring(14,16) + "");
+				chatList.get(value).setCreateDate(
+						timeType + " " + chatTime + ":" + chatList.get(value).getCreateDate().substring(14, 16) + "");
 				value++;
 			}
-		}
-		if (chatList.size() == 0)
-			return "";
-		for (int i = 0; i < chatList.size(); i++) {
-			result.append("[{\"value\": \"" + chatList.get(i).getEmpName() + "\"},");
-			result.append("{\"value\": \"" + chatList.get(i).getToEmpName() + "\"},");
-			result.append("{\"value\": \"" + chatList.get(i).getMessage() + "\"},");
-			result.append("{\"value\": \"" + chatList.get(i).getEmpNO() + "\"},");
-			if(chatList.get(i).getChangeName() != null  && !chatList.get(i).getChangeName().equals("") ) {
-				result.append("{\"value\": \"" + chatList.get(i).getChangeName() + "\"},");
-			}else {
-				result.append("{\"value\": \"member.png\"},");
+
+			for (int i = 0; i < chatList.size(); i++) {
+				result.append("[{\"value\": \"" + chatList.get(i).getEmpName() + "\"},");
+				result.append("{\"value\": \"" + chatList.get(i).getToEmpName() + "\"},");
+				result.append("{\"value\": \"" + chatList.get(i).getMessage() + "\"},");
+				result.append("{\"value\": \"" + chatList.get(i).getEmpNO() + "\"},");
+				if (chatList.get(i).getChangeName() != null && !chatList.get(i).getChangeName().equals("")) {
+					result.append("{\"value\": \"" + chatList.get(i).getChangeName() + "\"},");
+				} else {
+					result.append("{\"value\": \"member.png\"},");
+				}
+
+				if (chatList.get(i).getToChangeName() != null && !chatList.get(i).getToChangeName().equals("")) {
+					result.append("{\"value\": \"" + chatList.get(i).getToChangeName() + "\"},");
+				} else {
+					result.append("{\"value\": \"member.png\"},");
+
+				}
+
+				result.append("{\"value\": \"" + chatList.get(i).getCreateDate() + "\"}]");
+				if (i != chatList.size() - 1)
+					result.append(",");
 			}
-				
-			if( chatList.get(i).getToChangeName() != null  && !chatList.get(i).getToChangeName().equals("")) {
-				result.append("{\"value\": \"" + chatList.get(i).getToChangeName() + "\"},");
-			}else {
-				result.append("{\"value\": \"member.png\"},");
-				
-			}
-			
-			result.append("{\"value\": \"" + chatList.get(i).getCreateDate() + "\"}]");
-			if (i != chatList.size() - 1)
-				result.append(",");
+			result.append("], \"last\":\"" + chatList.get(chatList.size() - 1).getChatNo() + "\"}");
 		}
-		result.append("], \"last\":\"" + chatList.get(chatList.size() - 1).getChatNo() + "\"}");
 		readChat(empNO, toEmpNo);
-		if(chatList.get(chatList.size() - 1).getChatNo() == number ) return "";
+		
 		return result.toString();
 	}
 
@@ -205,16 +204,17 @@ public class MessengerController implements HandlerInterceptor {
 		map.put("toEmpNo", toEmpNo);
 		map.put("chatNo", chatNo);
 		ArrayList<ChatView> chatList = messengerService.getChatListById(map);
-		if(chatList.size() > 0) {
+		if (chatList.size() > 0) {
 			int value = 0;
 			for (int i = chatList.size(); i > 0; i--) {
-				int chatTime = Integer.parseInt(chatList.get(value).getCreateDate().substring(11,13));
+				int chatTime = Integer.parseInt(chatList.get(value).getCreateDate().substring(11, 13));
 				String timeType = "오전";
-				if(chatTime >= 12) {
+				if (chatTime >= 12) {
 					timeType = "오후";
 					chatTime -= 12;
 				}
-				chatList.get(value).setCreateDate( timeType + " " + chatTime + ":" + chatList.get(value).getCreateDate().substring(14,16) + "");
+				chatList.get(value).setCreateDate(
+						timeType + " " + chatTime + ":" + chatList.get(value).getCreateDate().substring(14, 16) + "");
 				value++;
 			}
 		}
@@ -225,62 +225,58 @@ public class MessengerController implements HandlerInterceptor {
 			result.append("{\"value\": \"" + chatList.get(i).getToEmpName() + "\"},");
 			result.append("{\"value\": \"" + chatList.get(i).getMessage() + "\"},");
 			result.append("{\"value\": \"" + chatList.get(i).getEmpNO() + "\"},");
-			if(chatList.get(i).getChangeName() != null  && !chatList.get(i).getChangeName().equals(""))  {
+			if (chatList.get(i).getChangeName() != null && !chatList.get(i).getChangeName().equals("")) {
 				result.append("{\"value\": \"" + chatList.get(i).getChangeName() + "\"},");
-			}else {
+			} else {
 				result.append("{\"value\": \"member.png\"},");
-				
+
 			}
-			if(chatList.get(i).getToChangeName() != null  && !chatList.get(i).getToChangeName().equals("") ) {
+			if (chatList.get(i).getToChangeName() != null && !chatList.get(i).getToChangeName().equals("")) {
 				result.append("{\"value\": \"" + chatList.get(i).getToChangeName() + "\"},");
-			}else {
+			} else {
 				result.append("{\"value\": \"member.png\"},");
-				
+
 			}
 			result.append("{\"value\": \"" + chatList.get(i).getCreateDate() + "\"}]");
 			if (i != chatList.size() - 1)
 				result.append(",");
 		}
 		result.append("], \"last\":\"" + chatList.get(chatList.size() - 1).getChatNo() + "\"}");
-		
+
 		return result.toString();
 	}
 
 	@ResponseBody
-	@RequestMapping(value="chatListFunction.msg", produces = "application/json;charset=utf8")
+	@RequestMapping(value = "chatListFunction.msg", produces = "application/json;charset=utf8")
 	public String chatListFunction(HttpServletResponse response, @RequestBody String param) {
 
 		response.setContentType("text/html;charset=UTF-8");
 
-
 		// 입력데이터 map으로 변환
 		Map<String, String> inputMap = paramMap(param);
-		
-		
+
 		// gson객체 생성
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		
+
 		String empNO = inputMap.get("empNO");
 		String toEmpNo = inputMap.get("toEmpNo");
 		String num = inputMap.get("num");
-		
-		
 
-		String result ="";
-		result = getChat( Integer.parseInt(empNO), Integer.parseInt(toEmpNo), Integer.parseInt(num));
+		String result = "";
+		result = getChat(Integer.parseInt(empNO), Integer.parseInt(toEmpNo), Integer.parseInt(num));
 		return gson.toJson(result);
 
 	}
 
-	public HashMap<String, String> paramMap(Object object ){
+	public HashMap<String, String> paramMap(Object object) {
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		JSONObject json = new JSONObject(String.valueOf(object)); // 받아온 string을 json 으로 변환
 		Iterator i = json.keys(); // json key 요소읽어옴
-		while(i.hasNext()){
-		     String k = i.next().toString(); // key 순차적으로 추출
-		     hashmap.put(k, json.getString(k)); // key, value를 map에 삽입
+		while (i.hasNext()) {
+			String k = i.next().toString(); // key 순차적으로 추출
+			hashmap.put(k, json.getString(k)); // key, value를 map에 삽입
 		}
-		
+
 		return hashmap;
 	}
 
@@ -290,10 +286,7 @@ public class MessengerController implements HandlerInterceptor {
 		map.put("toEmpNo", toEmpNo);
 		int result = messengerService.readChat(map);
 		return result;
-		
+
 	}
-
-	
-
 
 }
