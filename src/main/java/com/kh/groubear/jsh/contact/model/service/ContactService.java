@@ -17,7 +17,7 @@ public interface ContactService {
 
 	void deleteContact(int deleteNo);
 
-	int countContact();
+	int countContact(HashMap<String, Object> map);
 	
 	
 }

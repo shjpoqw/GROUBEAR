@@ -20,6 +20,7 @@ public interface MemberService {
 
 	Member loginMember(BCryptPasswordEncoder bCryptPasswordEncoder, Member m);
 
+	Member updateMember(Member m) throws Exception;
 
 	void deleteMember(String userId);
 
@@ -57,11 +58,7 @@ public interface MemberService {
 
    MemberView selectWEmp(int ano, int wno);
 
-   MemberView updateMember(MemberView m) throws Exception;
-
-String getDeptName(Member user);
-
-String getJobName(Member user);
+int countMemberCt(HashMap<String, Object> map);
 
 	
 

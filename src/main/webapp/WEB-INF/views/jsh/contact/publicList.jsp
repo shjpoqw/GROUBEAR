@@ -311,7 +311,7 @@
 	<div class="container bootstrap snippets bootdey">
 
 		<div class="right">
-			<form method="post">
+			<form>
 				<select class="form-control selectpicker noborder " name="d"
 					style="width: 100px; display: inline-block;">
 					<option value="">전체</option>
@@ -350,10 +350,8 @@
 											</td>
 											<td><span class="label label-default">${m.jobName}</span>
 											</td>
-
 										</tr>
 									</c:forEach>
-
 								</tbody>
 							</table>
 						</div>
@@ -365,7 +363,6 @@
 		<c:set var="startNum" value="${page-(page-1)%5}" />
 		<c:set var="lastNum"
 			value="${fn:substringBefore(Math.ceil(count/10),'.') }" />
-
 		<nav aria-label="Page navigation example" class="d-flex justify-content-center">
 			<ul class="pagination">
 				<c:if test="${startNum>1}">
