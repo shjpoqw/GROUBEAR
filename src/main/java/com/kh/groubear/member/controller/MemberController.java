@@ -31,6 +31,7 @@ import com.kh.groubear.member.model.vo.Department;
 import com.kh.groubear.member.model.vo.EmpAttachment;
 import com.kh.groubear.member.model.vo.Job;
 import com.kh.groubear.member.model.vo.Member;
+import com.kh.groubear.member.model.vo.MemberView;
 
 @SessionAttributes("loginUser") // Model에 loginUser 라는 키값으로 객체가 추가되면 자동으로 세션에 추가되는 어노테이션 (응답 페이지에 응답할 데이터가 있는 경우 3번)
 @Controller
@@ -126,21 +127,39 @@ public class MemberController {
 	// 마이페이지
    @RequestMapping("myPage.me")
    public String myPage(HttpSession session, Model model) {
-      Member user = (Member) session.getAttribute("loginUser");
+      Member user = (Member)session.getAttribute("loginUser");
       EmpAttachment profile = memberService.selectProfile(user.getEmpNO());
-
+      
+      MemberView userInfo=new MemberView();
+      userInfo.setEmpNO(user.getEmpNO());
+      userInfo.setEmpId(user.getEmpId());
+      userInfo.setEmpName(user.getEmpName());
+      userInfo.setDeptCode(user.getDeptCode());
+      userInfo.setJobCode(user.getJobCode());
+      userInfo.setHireDate(user.getHireDate());
+      userInfo.setSalary(user.getSalary());
+      userInfo.setEmail(user.getEmail());
+      userInfo.setPhone(user.getPhone());
+      userInfo.setAddress(user.getAddress());
+      
+      String deptName= memberService.getDeptName(user);
+      String jobName= memberService.getJobName(user);
+      userInfo.setDeptName(deptName);
+      userInfo.setJobName(jobName);
+      
       model.addAttribute("profile", profile);
-
+      model.addAttribute("loginUser",userInfo);
+      
       return "member/myPage";
    }
 
 	
    @RequestMapping("update.me")
-   public String updateMember(@ModelAttribute Member m, HttpServletRequest request, @RequestParam("post") String post,
+   public String updateMember(@ModelAttribute MemberView m, HttpServletRequest request, @RequestParam("post") String post,
          @RequestParam("address1") String address1, @RequestParam("address2") String address2,
          @RequestParam(value = "profile", required = false) MultipartFile profile, Model model) throws Exception {
       
-	   System.out.println("======= profile " + profile);
+	  
       if (!profile.equals("") || profile != null) {
 
          EmpAttachment file = memberService.selectProfile(m.getEmpNO());
@@ -164,8 +183,8 @@ public class MemberController {
 
       m.setAddress(post + "/" + address1 + "/" + address2);
       
-      Member userInfo = memberService.updateMember(m);
-
+      MemberView userInfo = memberService.updateMember(m);
+      
       model.addAttribute("loginUser", userInfo);
       return "member/myPage";
    }

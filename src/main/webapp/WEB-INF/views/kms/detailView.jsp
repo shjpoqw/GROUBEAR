@@ -12,7 +12,7 @@
     <meta name="description" content="">	
     <meta name="author" content="">
 
-    <title>${member.empName}님의 사원정보</title>
+    <title>GROUBEAR</title>
 	
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath}/resources/css/common/all.min.css" rel="stylesheet" type="text/css">
@@ -339,14 +339,14 @@
 
             <form action="update.ad" method="post" onsubmit="">
                 <div class="form-group">
-                    <c:if test="${!empty sessionScope.profile.originName}">
+                    <c:if test="${!empty profile.originName}">
                 		<div id="img_box">
 	                		<img id="show_profile" height="240px" 
-	                		src="${ pageContext.servletContext.contextPath }/resources/profile_files/${sessionScope.profile.changeName}"/>
+	                		src="${ pageContext.servletContext.contextPath }/resources/profile_files/${profile.changeName}"/>
                 		</div>
                 	</c:if>
                 	
-                	<c:if test="${empty sessionScope.profile.originName}">
+                	<c:if test="${empty profile.originName}">
 	                	<div id="img_box">
 		                	<img id="show_profile" height="240px" 
 		                	src="${pageContext.request.contextPath}/resources/images/common/member.png"/>
@@ -356,18 +356,31 @@
                     <input type="text" class="form-control" id="empName" name="empName" value="${member.empName}" readonly><br>
                      
                     <label for="userName"> 부서 :</label>
-	                <select name="deptCode" class="form-control"> 
+	                <select name="deptCode" class="form-control" id="deptName"> 
 							<c:forEach var="dept" items="${dept}" >
 								<option value="${dept.deptCode}">${dept.deptName}</option>
 							</c:forEach>
 					</select> 
+					<script>
+					
+					$("#deptName").val("${member.deptCode}").prop("selected", true);
+
+					
+					</script>
 					<br>
 					<label for="userName" > 직책 :</label>
-					<select name="jobCode"  class="form-control"> 
+					<select name="jobCode"  class="form-control" id="jobName"> 
+							
 						<c:forEach var="job" items="${job}" >
 							<option value="${job.jobCode}">${job.jobName}</option>
 						</c:forEach>
 					</select> 
+					<script>
+					
+					$("#jobName").val("${member.jobCode}").prop("selected", true);
+
+					
+					</script>
                     <br>
                     <label for="userName"> 입사일 :</label>
                     <input type="text" class="form-control" id="hireDate" name="hireDate" value="${ member.hireDate }" readonly><br>
