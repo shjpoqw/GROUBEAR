@@ -90,8 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectLeaveCreateList" parameterType="_int" resultMap="leaveResultMap">
 		SELECT EMP_NO, LEAVE_OCCURDATE, LEAVE_ENDDATE, COUNT(*)
 		FROM LEAVE
-		WHERE LEAVE_ISUSE = 'N'
-		AND EMP_NO = #{eno}
+		WHERE EMP_NO = #{eno}
 		GROUP BY EMP_NO, LEAVE_OCCURDATE, LEAVE_ENDDATE
 	</select>
 	
