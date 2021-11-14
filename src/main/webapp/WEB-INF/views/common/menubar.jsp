@@ -12,7 +12,7 @@
     <meta name="description" content="">	
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>GROUBEAR</title>
 	
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath}/resources/css/common/all.min.css" rel="stylesheet" type="text/css">
@@ -24,6 +24,11 @@
     <!-- Custom styles for this template-->
     <link href="<%=request.getContextPath()%>/resources/css/common/sb-admin-2.min.css" rel="stylesheet"> 
 	<script src="https://kit.fontawesome.com/568d1fce8b.js" crossorigin="anonymous"></script>
+	<style>
+	     img { display : block;
+
+                    margin : auto;}
+                    </style>
 </head>
 
 <body id="page-top">
@@ -303,8 +308,13 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
-		
+				<!-- main image -->
+				
+                  	<img  src="${pageContext.request.contextPath}/resources/images/common/groubear2.png" style="width:800px; height:800px;">
+                                           
+                
+				
+				<!--  -->
 	</div>
 
 		</div>

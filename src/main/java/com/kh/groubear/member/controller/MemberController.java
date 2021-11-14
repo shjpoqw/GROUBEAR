@@ -54,7 +54,7 @@ public class MemberController {
 	
 	@RequestMapping("logout.me")
    public String logoutMember(HttpSession session ,SessionStatus status) {
-      Member user = (Member)session.getAttribute("loginUser");
+      MemberView user = (MemberView)session.getAttribute("loginUser");
       
       status.setComplete(); // 현재 컨트롤러에 @SessionAttributes 에 의해 저장된 오브젝트를 제거
       return "redirect:/";

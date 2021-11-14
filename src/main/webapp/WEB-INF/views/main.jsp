@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GROUBEAR</title>
 
 <link href="${pageContext.request.contextPath}/resources/css/common/login.css" rel="stylesheet" type="text/css">
 </head>
