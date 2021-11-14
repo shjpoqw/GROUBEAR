@@ -49,7 +49,7 @@ var newEvent = function (start, end, eventType) {
             beam: "N"
         };
         
-        alert(eventData.type);
+    
         
 
         if (eventData.start > eventData.end) {

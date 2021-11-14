@@ -12,7 +12,7 @@
     <meta name="description" content="">	
     <meta name="author" content="">
 
-    <title>회의실 예약</title>
+    <title>GROUBEAR</title>
 	
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath}/resources/css/common/all.min.css" rel="stylesheet" type="text/css">
@@ -433,7 +433,7 @@ button, input, optgroup, select, textarea {
                 </nav>
                 <!-- End of Topbar -->
 	<!-- 여기에 넣어라 -->	
-	<h2>회의실 예약</h2>
+	
 			<div class="container">
 
 			<!-- 일자 클릭시 메뉴오픈 -->
@@ -557,7 +557,7 @@ button, input, optgroup, select, textarea {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
+       <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -576,11 +576,11 @@ button, input, optgroup, select, textarea {
             </div>
         </div>
     </div>
-    </div>
+    
 
     <!-- Bootstrap core JavaScript-->
     <script src="<%=request.getContextPath()%>/resources/js/common/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/common/bootstrap.bundle.min.js"></script>
+   
 
     <!-- Core plugin JavaScript-->
     <script src="<%=request.getContextPath()%>/resources/js/common/jquery.easing.min.js"></script>
@@ -615,9 +615,8 @@ button, input, optgroup, select, textarea {
 		src="<%=request.getContextPath()%>/resources/js/kms/room/editEvent.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/kms/room/etcSetting.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/common/bootstrap.bundle.min.js"></script>
-	
+	<script src="<%=request.getContextPath()%>/resources/js/common/bootstrap.bundle.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/common/bootstrap.bundle.min.js"></script>
 	
 	
 	

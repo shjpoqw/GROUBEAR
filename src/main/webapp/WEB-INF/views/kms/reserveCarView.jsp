@@ -564,7 +564,7 @@ button, input, optgroup, select, textarea {
 
     <!-- Bootstrap core JavaScript-->
     <script src="<%=request.getContextPath()%>/resources/js/common/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/common/bootstrap.bundle.min.js"></script>
+    
 
     <!-- Core plugin JavaScript-->
     <script src="<%=request.getContextPath()%>/resources/js/common/jquery.easing.min.js"></script>
@@ -599,9 +599,8 @@ button, input, optgroup, select, textarea {
 		src="<%=request.getContextPath()%>/resources/js/kms/car/editEvent.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/kms/car/etcSetting.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/common/bootstrap.bundle.min.js"></script>
-
+	<script src="<%=request.getContextPath()%>/resources/js/common/bootstrap.bundle.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/common/bootstrap.bundle.min.js"></script>
 
 </body>
 

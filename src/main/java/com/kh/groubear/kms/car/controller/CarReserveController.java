@@ -122,10 +122,4 @@ public class CarReserveController {
 		
 		return "kms/reserveCarView";	
 	}
-
-@RequestMapping("addModal.room")
-		public String addModal() {
-			System.out.println("실행");
-			return "kms/reserveRoomView";
-		}
 }

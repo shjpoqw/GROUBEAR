@@ -40,10 +40,7 @@ var editEvent = function (event, element, view) {
             return false;
         }
         
-        if (eventData.type ==null){
-        	alert('회의실을 선택해주세요');
-        	return false;
-        }
+       
 
        
         var startDate;
@@ -73,8 +70,12 @@ var editEvent = function (event, element, view) {
         	
         }
   
+        console.log("event._id : "+event._id);
+        console.log("event.start : "+event.start);
+        console.log("event.end : "+event.end);
+        console.log("event.description : "+event.description);
         $("#calendar").fullCalendar('updateEvent', event);
-
+        
         //일정 업데이트
         $.ajax({
             type: "get",

@@ -28,7 +28,7 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.insertMember", m);
 	}
 
-	public int updateMember(SqlSessionTemplate sqlSession, Member m) throws Exception {
+	public int updateMember(SqlSessionTemplate sqlSession, MemberView m) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update("memberMapper.updateMember", m);
 	}
@@ -156,5 +156,19 @@ public class MemberDao {
 	      
 	      return sqlSession.selectOne("memberMapper.selectWEmp", map);
 	   }
+
+	public MemberView selectUpdateMember(SqlSessionTemplate sqlSession, MemberView m) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberMapper.selectUpdateMember", m);
+	}
+
+	public String selectDeptName(SqlSessionTemplate sqlSession, Member user) {
+		
+		return sqlSession.selectOne("memberMapper.selectDeptName",user);
+	}
+
+	public String selectJobName(SqlSessionTemplate sqlSession, Member user) {
+		return sqlSession.selectOne("memberMapper.selectJobName",user);
+	}
 	
 }
