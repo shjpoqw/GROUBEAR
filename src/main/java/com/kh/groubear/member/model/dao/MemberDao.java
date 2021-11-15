@@ -161,5 +161,19 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("memberMapper.countMemberCt",map);
 	}
+
+	public MemberView selectMemberView(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.selectMemberView",m);
+	}
+
+	public String getDeptName(SqlSessionTemplate sqlSession, String deptCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberMapper.getDeptName", deptCode);
+	}
+
+	public String getJobName(SqlSessionTemplate sqlSession, String jobCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberMapper.getJobName", jobCode);
+	}
 	
 }

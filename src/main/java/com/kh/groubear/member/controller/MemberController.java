@@ -54,10 +54,9 @@ public class MemberController {
 	
 	@RequestMapping("logout.me")
    public String logoutMember(HttpSession session ,SessionStatus status) {
-      MemberView user = (MemberView)session.getAttribute("loginUser");
       
       status.setComplete(); // 현재 컨트롤러에 @SessionAttributes 에 의해 저장된 오브젝트를 제거
-      return "redirect:/";
+      return "/main";
    }
 	
 	@RequestMapping("enrollForm.me")
@@ -142,11 +141,11 @@ public class MemberController {
       userInfo.setPhone(user.getPhone());
       userInfo.setAddress(user.getAddress());
       
-      String deptName= memberService.getDeptName(user);
-      String jobName= memberService.getJobName(user);
+      String deptName= memberService.getDeptName(user.getDeptCode());
+      String jobName= memberService.getJobName(user.getJobCode());
       userInfo.setDeptName(deptName);
       userInfo.setJobName(jobName);
-      
+
       model.addAttribute("profile", profile);
       model.addAttribute("loginUser",userInfo);
       
@@ -155,13 +154,14 @@ public class MemberController {
 
 	
    @RequestMapping("update.me")
-   public String updateMember(@ModelAttribute MemberView m, HttpServletRequest request, @RequestParam("post") String post,
+   public String updateMember(@ModelAttribute Member m, HttpServletRequest request, @RequestParam("post") String post,
          @RequestParam("address1") String address1, @RequestParam("address2") String address2,
          @RequestParam(value = "profile", required = false) MultipartFile profile, Model model) throws Exception {
       
-	  
-      if (!profile.equals("") || profile != null) {
+	  System.out.println(" ======================== profile1");
+      if (profile.getSize() != 0 && profile != null) {
 
+    	  System.out.println(" ======================== profile2");
          EmpAttachment file = memberService.selectProfile(m.getEmpNO());
          if (file.getFileNo() != 0 && !file.getOriginName().equals("")) {
             deleteFile(file.getOriginName(), request);
@@ -181,6 +181,7 @@ public class MemberController {
          session.setAttribute("profile", updateProfile);
       }
 
+      System.out.println(" ======================== profile3");
       m.setAddress(post + "/" + address1 + "/" + address2);
       
       MemberView userInfo = memberService.updateMember(m);

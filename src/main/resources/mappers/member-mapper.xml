@@ -170,7 +170,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left outer join department d on (e.dept_code=d.dept_code)	
 		where emp_yn='N'
 		and emp_no=#{empNO}
-		
 	</select>
 	
 	<update id="updateMember2" parameterType="Member">
@@ -244,5 +243,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND DEPT_CODE LIKE #{department}
 	</select>
 	
+	<select id="selectMemberView" parameterType="Member" resultMap="memberViewResultSet">
+		SELECT * 
+		FROM EMPLOYEE_VIEW
+		WHERE EMP_NO=#{empNO}
+	</select>
+	
+	<select id="getDeptName" parameterType="string" resultType="string">
+		SELECT DEPT_NAME
+		FROM DEPARTMENT
+		WHERE DEPT_CODE = #{deptCode}
+	</select>
+	
+	<select id="getJobName" parameterType="string" resultType="string">
+		SELECT JOB_NAME
+		FROM JOB
+		WHERE JOB_CODE = #{jobCode}
+	</select>
 	
 </mapper>
